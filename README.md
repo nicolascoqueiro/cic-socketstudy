@@ -4,8 +4,8 @@ Projeto prático desenvolvido para a disciplina **CIC0124 - Redes de Computadore
 
 ## Integrantes
 * **Nicolas Coqueiro Almeida de Freitas** 
-* **Maria  **
-**Professora:** Profa. Priscila Solis 
+* **Maria Luiza Teixeira da Silva**
+* **Professora:** Profa. Priscila Solis 
 
 ---
 
