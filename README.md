@@ -34,7 +34,7 @@ O projeto consiste em um **Sistema de Chat Híbrido Multiusuário** baseado na a
 
 O fluxo detalha a comunicação híbrida empregada no projeto: transações estruturadas de cadastro, login e mensagens utilizam canais síncronos HTTP/TCP, enquanto fluxos independentes operam via UDP para fins de amostragem de tráfego.
 
-![Diagrama de Classes](docs/uml.png)
+![Diagrama de Classes](docs/src/uml.png)
 
 ---
 
@@ -43,30 +43,29 @@ O fluxo detalha a comunicação híbrida empregada no projeto: transações estr
 ```text
 ├── .gitignore
 ├── README.md                    # Descrição, integrantes e especificações do projeto
-├── docs/                        # Documentação técnica e relatórios
-
-(em construção)
-│   ├── protocolo_aplicacao.md  # Especificação dos métodos HTTP e JSONs aceitos
-│   ├── relatorio_wireshark.pdf # Análises de atraso, vazão e capturas de tráfego
-│   └── uml_classes.png         # Imagem do Diagrama de Classes
-│
-├── servidor/                    
+├── docs/                        # Documentação técnica e relatórios do projeto
+│   ├── relatorio_wireshark.pdf  # Análises de atraso, vazão e capturas de tráfego
+│   ├── protocolo_aplicacao.md   # Especificação dos métodos HTTP e JSONs aceitos
+│   └── src/                     # Recursos visuais e enunciados
+│       ├── projeto1-20261.pdf   # Especificação original do projeto
+│       └── uml_classes.png      # Imagem do Diagrama de Classes do sistema
+├── servidor/                    # Código-fonte do servidor central
 │   ├── main.py                  # Inicializador unificado do backend (HTTP e UDP)
-│   ├── core/                    # Motores de rede
+│   ├── core/                    # Motores e protocolos de rede
 │   │   ├── __init__.py
 │   │   ├── http_server.py       # Servidor HTTP nativo (GET/POST) com limite de 500 bytes
-│   │   └── udp_server.py        # Servidor para testes de tráfego rápido em background
+│   │   └── udp_server.py        # Servidor UDP para capturar status de digitação em tempo real
 │   ├── database/                # Camada de persistência relacional
 │   │   ├── __init__.py
 │   │   ├── chat_database.db     # Banco SQLite local (ignorado no versionamento)
 │   │   └── db_manager.py        # Gerenciador de queries, constraints e logs
-│   └── logs/
-│        └── server.log
-├── cliente_desktop/                    
-│   ├── app.js                 
-│   ├── index.html
-│    └── style.css
-│
-└── cliente_desktop/             
-    ├── index.html               # Frontend Web - Tela de Autenticação e Janela do Chat
-    └── network/                 # Scripts auxiliares para medição de RTT e Throughput
+│   └── logs/                    # Histórico de execução do sistema
+│       └── server.log           # Arquivo físico de logs de auditoria
+├── cliente_desktop/             # Interface gráfica do utilizador (Frontend)
+│   ├── index.html               # Estrutura HTML do chat e autenticação
+│   ├── style.css                # Estilização visual e responsividade da interface
+│   └── app.js                   # Lógica de controle do cliente, polling HTTP e gatilho UDP
+└── tests/                       # Suite de testes automatizados e simulação
+    ├── test_database.py         # Validação de constraints, integridade e logs do SQLite
+    ├── test_http_payload.py     # Validação estrita do limite de 500 bytes no corpo HTTP
+    └── test_udp_traffic.py      # Simulador de injeção de tráfego UDP para o "Digitando..."
