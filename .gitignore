@@ -1,0 +1,19 @@
+# Cache do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Banco de Dados Local 
+# Mantém o banco fora do Git para não sobrescrever o dos seus colegas
+servidor/database/chat_database.db
+
+# Ambientes Virtuais (caso use)
+venv/
+.venv/
+env/
+
+# Arquivos do Sistema Operacional
+.DS_Store
+Thumbs.db
