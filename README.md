@@ -28,6 +28,194 @@ O projeto consiste em um **Sistema de Chat Híbrido Multiusuário** baseado na a
 
 ---
 
+##Como Executar o Projeto
+
+# Como Executar o Projeto
+
+Este documento descreve o processo completo de execução do sistema, incluindo inicialização do servidor, abertura da interface web, simulação de tráfego UDP e execução dos testes automatizados.
+
+---
+
+# 1. Iniciar o Servidor Central
+
+O backend unificado do projeto é responsável pelos serviços HTTP e UDP da aplicação.
+
+## Serviços Disponíveis
+
+| Serviço | Porta |
+|---|---|
+| HTTP | 5000 |
+| UDP | 5001 |
+
+## Execução
+
+No terminal raiz do projeto, execute:
+
+```bash
+python3 -m servidor.main
+```
+
+Após a execução, o servidor ficará responsável por:
+
+- Receber requisições HTTP do cliente web
+- Gerenciar mensagens do chat
+- Processar eventos UDP
+- Controlar status de digitação em tempo real
+
+---
+
+# 2. Abrir o Cliente Web
+
+A interface do sistema é executada diretamente no navegador.
+
+## Passos
+
+1. Navegue até a pasta:
+
+```text
+cliente_desktop/
+```
+
+2. Abra o arquivo:
+
+```text
+index.html
+```
+
+em qualquer navegador moderno.
+
+## Navegadores Compatíveis
+
+- Google Chrome
+- Mozilla Firefox
+- Microsoft Edge
+
+---
+
+# 3. Simular Conversas Entre Usuários
+
+Para validar o funcionamento do chat em múltiplas sessões:
+
+- Abra duas abas diferentes
+- Ou utilize uma janela anônima/incógnita
+
+## Exemplo de Usuários
+
+```text
+nicolas
+nicolas1
+```
+
+Isso permite simular troca de mensagens entre dois clientes conectados simultaneamente.
+
+---
+
+# 4. Simular Tráfego UDP ("Digitando...")
+
+O sistema possui suporte a eventos UDP para atualização de status em tempo real.
+
+O script de testes envia datagramas UDP ao servidor para simular o evento:
+
+```text
+digitando...
+```
+
+## Execução
+
+Com o servidor já ativo e o navegador aberto, execute em outro terminal:
+
+```bash
+python3 tests/test_udp_traffic.py
+```
+
+## Objetivo do Teste
+
+Validar:
+
+- Comunicação UDP
+- Atualização em tempo real
+- Eventos de digitação
+- Recebimento de datagramas
+- Integração entre backend e frontend
+
+---
+
+# 5. Executar os Testes Automatizados
+
+Os testes automatizados validam regras críticas do sistema.
+
+---
+
+## 5.1 Teste da Base de Dados
+
+Valida:
+
+- Restrições da base
+- Integridade dos dados
+- Operações CRUD
+- Persistência
+
+### Execução
+
+```bash
+python3 -W ignore -m unittest tests/test_database.py
+```
+
+---
+
+## 5.2 Teste de Segurança do Payload HTTP
+
+Valida:
+
+- Limite máximo de payload
+- Segurança das requisições HTTP
+- Restrição de tamanho de mensagens
+
+## Limite Validado
+
+```text
+500 bytes
+```
+
+### Execução
+
+```bash
+python3 -W ignore -m unittest tests/test_http_payload.py
+```
+
+---
+
+# Fluxo Completo de Execução
+
+## Ordem Recomendada
+
+### 1. Iniciar o backend
+
+```bash
+python3 -m servidor.main
+```
+
+### 2. Abrir o cliente web
+
+```text
+cliente_desktop/index.html
+```
+
+### 3. Simular eventos UDP
+
+```bash
+python3 tests/test_udp_traffic.py
+```
+
+### 4. Executar testes automatizados
+
+```bash
+python3 -W ignore -m unittest tests/test_database.py
+
+python3 -W ignore -m unittest tests/test_http_payload.py
+```
+
+---
 ## Modelagem Arquitetural (UML)
 
 ### Visão Geral do Fluxo (Diagrama de Classes)
@@ -69,3 +257,5 @@ O fluxo detalha a comunicação híbrida empregada no projeto: transações estr
     ├── test_database.py         # Validação de constraints, integridade e logs do SQLite
     ├── test_http_payload.py     # Validação estrita do limite de 500 bytes no corpo HTTP
     └── test_udp_traffic.py      # Simulador de injeção de tráfego UDP para o "Digitando..."
+
+
