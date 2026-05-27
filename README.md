@@ -3,7 +3,8 @@
 Projeto prático desenvolvido para a disciplina **CIC0124 - Redes de Computadores** na Universidade de Brasília (UnB).
 
 ## Integrantes
-* **Nicolas Coqueiro Almeida de Freitas** 
+* **Nicolas Coqueiro Almeida de Freitas**
+* **Maria Luiza Teixeira da Silva**
 * **Professora:** Profa. Priscila Solis 
 
 ---
