@@ -3,29 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SocketSync Web Client</title>
+    <title>Socketstudy</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
-    <div id="auth-screen" class="container">
-        <h2>SocketSync - Autenticação</h2>
-        <input type="text" id="username" placeholder="Nome de Utilizador">
-        <input type="password" id="password" placeholder="Palavra-passe">
-        <button onclick="autenticar('login')">Entrar (Login)</button>
-        <button onclick="autenticar('register')" class="secondary-btn">Registar Nova Conta</button>
-    </div>
-
-    <div id="chat-screen" class="container" style="display:none;">
-        <h2 id="welcome-msg">Chat</h2>
-        <div id="chat-box"></div>
+    <div id="main-box" class="container">
         
-        <div id="typing-status" style="font-size: 13px; color: #dc3545; height: 20px; font-style: italic; margin-bottom: 5px; font-weight: bold;"></div>
-        
-        <div class="footer-input">
-            <input type="text" id="msg-input" placeholder="Digite a sua mensagem (máx 500 carac.)" maxlength="600" onkeydown="if(event.key === 'Enter') enviarMensagem()" oninput="notificarDigitando()">
-            <button onclick="enviarMensagem()">Enviar</button>
+        <div id="auth-screen">
+            <h2>Socketstudy - Autenticação</h2>
+            <input type="text" id="username" placeholder="Nome de Utilizador">
+            <input type="password" id="password" placeholder="Palavra-passe">
+            <button onclick="autenticar('login')">Entrar (Login)</button>
+            <button onclick="autenticar('register')" class="secondary-btn">Registar Nova Conta</button>
         </div>
+
+        <div id="chat-screen" style="display: none; height: 100%; flex-direction: column; width: 100%;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <h2 id="welcome-msg" style="margin: 0;">Chat</h2>
+                <button onclick="desconectar()" class="danger-btn" style="width: auto; padding: 8px 15px; margin: 0;">Sair</button>
+            </div>
+            <h2 id="welcome-msg">Chat</h2>
+            <div id="chat-box"></div>
+            
+            <div id="typing-status" style="font-size: 13px; color: #dc3545; height: 20px; font-style: italic; margin-bottom: 5px; font-weight: bold;"></div>
+            
+            <div class="footer-input">
+                <input type="text" id="msg-input" placeholder="Digite a sua mensagem (máx 500 carac.)" maxlength="600" onkeydown="if(event.key === 'Enter') enviarMensagem()" oninput="notificarDigitando()">
+                <button onclick="enviarMensagem()">Enviar</button>
+            </div>
+        </div>
+
     </div>
 
     <script src="app.js"></script>

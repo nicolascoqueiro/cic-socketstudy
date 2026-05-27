@@ -26,6 +26,9 @@ async function autenticar(rota) {
                 currentUser = user;
                 document.getElementById('auth-screen').style.display = 'none';
                 document.getElementById('chat-screen').style.display = 'block';
+                const chatScreen = document.getElementById("chat-screen");
+                chatScreen.style.display = "flex"; 
+                document.getElementById("main-box").classList.add("chat-fullscreen");
                 document.getElementById('welcome-msg').innerText = `Ligado como: ${currentUser}`;
                 
                 carregarMensagens();
@@ -41,10 +44,10 @@ async function autenticar(rota) {
     }
 }
 
-// NOVA FUNÇÃO: Dispara um aviso quando digita na aba
+
 async function notificarDigitando() {
     const agora = Date.now();
-    if (agora - ultimoEnvioDigitando < 2000) return; // Limita requisições
+    if (agora - ultimoEnvioDigitando < 2000) return; 
     ultimoEnvioDigitando = agora;
 
     try {
@@ -113,4 +116,14 @@ async function carregarMensagens() {
     } catch (error) {
         console.error('Erro no polling:', error);
     }
+}
+
+function desconectar() {
+    document.getElementById("chat-screen").style.display = "none";
+    document.getElementById("auth-screen").style.display = "block";
+    document.getElementById("main-box").classList.remove("chat-fullscreen");
+    document.getElementById("password").value = "";
+    document.getElementById("msg-input").value = "";
+    document.getElementById("chat-box").innerHTML = "";
+
 }

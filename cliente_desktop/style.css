@@ -2,11 +2,12 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f6f9;
     margin: 0;
-    padding: 20px;
+    padding: 0; 
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    overflow: hidden; 
 }
 
 .container {
@@ -15,7 +16,21 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     width: 100%;
-    max-width: 450px;
+    max-width: 420px; /* Compacto para o login */
+    box-sizing: border-box;
+}
+
+
+.container.chat-fullscreen {
+    max-width: 100%;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0; 
+    box-shadow: none; 
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box; 
 }
 
 h2 {
@@ -50,7 +65,7 @@ button:hover {
 }
 
 .secondary-btn {
-    background-color: #6c757d;
+    background-color: #7d6c6c;
 }
 
 .secondary-btn:hover {
@@ -59,11 +74,11 @@ button:hover {
 
 #chat-box {
     width: 100%;
-    height: 300px;
+    flex: 1; /* Faz a caixa de mensagens ocupar todo o espaço vertical disponível */
     border: 1px solid #ddd;
     border-radius: 4px;
     overflow-y: auto;
-    padding: 10px;
+    padding: 15px;
     margin-bottom: 15px;
     background: #fafafa;
     box-sizing: border-box;
@@ -93,4 +108,13 @@ button:hover {
 .footer-input button {
     width: auto;
     margin: 0;
+}
+
+.danger-btn {
+    background-color: #dc3545 !important; 
+    color: white !important; 
+}
+
+.danger-btn:hover {
+    background-color: #bd2130 !important; 
 }
